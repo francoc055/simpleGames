@@ -1,17 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
-    <script type="module" src="./src/snake.js" defer></script>
-  </head>
-  <body>
-    <div class="container">
-      <canvas id="snakeCanvas" width="400" height="400"></canvas>
-    </div>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <header class="w-full h-16 bg-slate-200 flex items-center justify-between">
+      <div class="p-5 cursor-pointer transition-all duration-300 hover:rotate-90">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 0 1-.657.643 48.39 48.39 0 0 1-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 0 1-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 0 0-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 0 1-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 0 0 .657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 0 1-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 0 0 5.427-.63 48.05 48.05 0 0 0 .582-4.717.532.532 0 0 0-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 0 0 .658-.663 48.422 48.422 0 0 0-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 0 1-.61-.58v0Z" />
+        </svg>        
+      </div>
+      <nav>
+        <ul class="flex">
+          <li class="p-2 transition-bg duration-500 hover:bg-slate-300 rounded"><a href="./views/login.html">iniciar sesion</a></li>
+          <li class="p-2 transition-bg duration-500 hover:bg-slate-300 rounded mr-5"><a href="#">registrarse</a></li>
+        </ul>
+      </nav>
+    </header>
 
-    <!-- <div id="cuadrado" style="height: 10px; width: 10px; background-color: aquamarine; position: absolute;"></div> -->
+    <main>
+      <h1 class="text-center tracking-wide mt-5 text-2xl">Bienvenido a <b>Simple Games</b></h1>
+
+      <section class="w-full h-96 flex items-center justify-center">
+        <article id="card-snake" class="w-64 h-56 border-2 border-cyan-100 rounded-md m-5 flex items-center justify-center flex-col ">
+          <!-- transition-opacity cursor-pointer hover:opacity-45 -->
+          <img src="./assets/fondoSnake.PNG" alt="juegoSnake" class="h-56">
+          <!-- <p class="text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, nihil?</p> -->
+          <a id="enlaceSnake" href="./views/snake.html" target="_blank" class="border-2 rounded p-1 bg-slate-200 absolute opacity-0 transition-bg duration-300 hover:bg-slate-400 rounded-md">Jugar</a>
+        </article>
+        
+        <article class="w-64 h-56 border-2 border-cyan-100 rounded m-5 flex items-center justify-center flex-col">
+          <img src="./assets/fondoPong.PNG" alt="juegoPong" class="h-56">
+          <!-- <p class="text-left">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore, earum!</p> -->
+          <a id="enlaceSnake" href="./views/snake.html" target="_blank" class="border-2 rounded p-1 bg-slate-200 absolute opacity-0 transition-bg duration-300 hover:bg-slate-400 rounded-md">Jugar</a>
+        </article>
+      </section>
+    </main>
+
+
+    <script>
+      let enlaceSnake = document.getElementById('enlaceSnake');
+      console.log(enlaceSnake);
+      enlaceSnake.style.pointerEvents = 'none';
+      
+      let $cardSnake = document.getElementById('card-snake');
+      
+      $cardSnake.addEventListener('mouseenter', ()=>{
+        $cardSnake.children[0].style.transition = 'opacity 0.6s ease';
+        $cardSnake.children[0].style.opacity = '0.6';
+        enlaceSnake.style.opacity = '1';
+
+      });
+
+      $cardSnake.addEventListener('mouseleave', ()=>{
+        $cardSnake.children[0].style.opacity = '1';
+        enlaceSnake.style.opacity = '0';
+        enlaceSnake.style.pointerEvents = '';
+
+      });
+  </script>
 </body>
 </html>

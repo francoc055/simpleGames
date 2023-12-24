@@ -1,6 +1,7 @@
 const canvas = document.getElementById('snakeCanvas');
 const context = canvas.getContext('2d');
-
+const $score = document.getElementById('score');
+let puntos = 1;
 const boxSize = 20;
 let snake = [{x: 10, y: 10}];
 let comida = {x:15, y: 15};
@@ -9,7 +10,7 @@ let nextDirection = 'rigth';
 let beforeDirection = 'rigth';
 
 const imagen = new Image();
-imagen.src = './assets/manzana.png';
+imagen.src = './../assets/manzana.png';
 imagen.width = 20;
 imagen.height = 20;
 
@@ -31,24 +32,16 @@ const pintar = ()=>{
             context.fillRect(x, y, boxSize, boxSize);
         }
     }
-    // context.stroke();
-    
-    // context.fillStyle = 'lightgrey';
-    
-    // context.fillRect(0, 0, canvas.width, canvas.height);
+
     
     context.fillStyle = 'green';
     for(let i = 0; i < snake.length; i++)
     {
-        // console.log(snake[i].x);
         context.fillRect(snake[i].x * boxSize, snake[i].y * boxSize, boxSize, boxSize);
     }
 
     context.drawImage(imagen,comida.x * boxSize, comida.y * boxSize, boxSize, boxSize);
 }
-
-
-
 
 
 
@@ -125,9 +118,9 @@ const mover = () => {
     
 
     if (roundedX === comida.x && roundedY === comida.y) {
+        $score.textContent = `score: ${puntos++}`;
         snake.unshift(newHead);
         comida = generarComida();
-        console.log(snake.length);
     } else {
         snake.pop();
         snake.unshift(newHead);
@@ -161,6 +154,8 @@ function resetGame() {
     beforeDirection = 'right';
     comida = generarComida();
     juegoEnPausa = true;
+    $score.textContent = 'score: 0';
+    puntos = 1;
 }
 
 const animacion = () => {
